@@ -101,10 +101,25 @@ function generatePassword() {
       console.log(passwordValuePrompt[i])
   }
 
-  
   console.log(passwordValuePrompt)
+
+  // var passwordLengthFinal = (Number(passwordLength) - 128)
+
+  // console.log(passwordLengthFinal) // -118
+  
+  // var passwordFinal = passwordValuePrompt.slice(passwordLengthFinal);
+
+  // console.log(passwordFinal) // 18
+
+  // console.log(Number(passwordLength)) // 10
+
+  // console.log(passwordFinal)
  
  
+//   for (var i=0; i < (Number(passwordLength) - passwordValuePrompt.length); i++) {
+//     passwordValuePrompt.push(passwordValueConcat[Math.floor(Math.random() * passwordValueConcat.length)]) 
+//     console.log(passwordValuePrompt[i])
+// }
  
  
   //console.log(parseInt(passwordLength))
