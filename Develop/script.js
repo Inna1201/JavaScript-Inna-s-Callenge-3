@@ -7,17 +7,16 @@ var uppercaseCharacters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"
 var numericRange = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 var specialCharacters = ["/", "[", "]", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+", ";", "'", ":", ",", ".", "<", ">", "?", "+", "-", "~"];
 
-// ??????
-var passwordLength = "";
-var passwordValuePrompt = [];
+// Empty arrays to store updated information
+var passwordValue = [];
 var passwordValueConcat = [];
-
+var guaranteedCharacters= [];
 
 
 function generatePassword() {
   //used to generate message in promtbox
   var passwordLength = prompt("Please choose the length of the password you want to generate. Password must be between 8-128 characters.");
-  // Error message
+  // Error message if chosen length is incorrect
   if (passwordLength < 8 || passwordLength > 128) {
     alert("Password must contain at least 8 characters and no more than 128 characters!");
     return;
@@ -32,43 +31,28 @@ function generatePassword() {
   // used to log the coice
   if  (lowercaseCharactersUse) {
     console.log(true);
-  // used to generate random character
-    passwordValuePrompt.push(lowercaseCharacters[Math.floor(Math.random() * lowercaseCharacters.length)])
-    console.log(passwordValuePrompt)
   } else {
     console.log(false);
   }
 
 
   var uppercaseCharactersUse = confirm("Do you want to include uppercase characters?");
-  // used to log the coice
   if  (uppercaseCharactersUse) {
     console.log(true);
-    // used to generate random character
-    passwordValuePrompt.push(uppercaseCharacters[Math.floor(Math.random() * uppercaseCharacters.length)])
-    console.log(passwordValuePrompt)
   } else {
     console.log(false);
   }
   
   var numericRangeUse = confirm("Do you want to include numbers?");
-  // used to log the coice
   if  (numericRangeUse) {
     console.log(true);
-    // used to generate random character
-    passwordValuePrompt.push(numericRange[Math.floor(Math.random() * numericRange.length)])
-    console.log(passwordValuePrompt)
   } else {
     console.log(false);
   }
 
   var specialCharactersUse = confirm("Do you want to include special characters?");
-  // used to log the coice
   if  (specialCharactersUse) {
     console.log(true);
-  // used to generate random character
-    passwordValuePrompt.push(specialCharacters[Math.floor(Math.random() * specialCharacters.length)])
-    console.log(passwordValuePrompt)
   } else {
     console.log(false);
   }
@@ -76,95 +60,48 @@ function generatePassword() {
 
 
   if (lowercaseCharactersUse === true) {
+    // empty array is used to create a new array depending on user password characters choice
     passwordValueConcat = passwordValueConcat.concat(lowercaseCharacters)
-    passwordValuePrompt.push(lowercaseCharacters[Math.floor(Math.random()* lowercaseCharacters.length)])
+      // used to generate random character for the password
+    guaranteedCharacters.push(lowercaseCharacters[Math.floor(Math.random()* lowercaseCharacters.length)])
   }
 
   if (uppercaseCharactersUse === true) {
     passwordValueConcat = passwordValueConcat.concat(uppercaseCharacters)
-    passwordValuePrompt.push(uppercaseCharacters[Math.floor(Math.random()* uppercaseCharacters.length)])
+    guaranteedCharacters.push(uppercaseCharacters[Math.floor(Math.random()* uppercaseCharacters.length)])
   }
 
   if (numericRangeUse === true) {
     passwordValueConcat = passwordValueConcat.concat(numericRange)
-    passwordValuePrompt.push(numericRange[Math.floor(Math.random()* numericRange.length)])
+    guaranteedCharacters.push(numericRange[Math.floor(Math.random()* numericRange.length)])
   }
 
   if (specialCharactersUse === true) {
     passwordValueConcat = passwordValueConcat.concat(specialCharacters)
-    passwordValuePrompt.push(specialCharacters[Math.floor(Math.random()* specialCharacters.length)])
+    guaranteedCharacters.push(specialCharacters[Math.floor(Math.random()* specialCharacters.length)])
   }
 
-  
-  for (var i=0; i < (Number(passwordLength) - passwordValuePrompt.length); i++) {
-      passwordValuePrompt.push(passwordValueConcat[Math.floor(Math.random() * passwordValueConcat.length)]) 
-      console.log(passwordValuePrompt[i])
+  console.log(guaranteedCharacters)
+ 
+  console.log(passwordValueConcat)
+
+  // used to generate number of characters that equals to chosen password length 
+  for (var i=0; i < passwordLength; i++) {
+      passwordValue.push(passwordValueConcat[Math.floor(Math.random() * passwordValueConcat.length)]) 
+      console.log(passwordValue[i])
   }
 
-  console.log(passwordValuePrompt)
+  // used to include already generated characters
+  for (var i = 0; i < guaranteedCharacters.length; i++) {
+    passwordValue[i] = guaranteedCharacters[i];
+  }
 
-  // var passwordLengthFinal = (Number(passwordLength) - 128)
-
-  // console.log(passwordLengthFinal) // -118
-  
-  // var passwordFinal = passwordValuePrompt.slice(passwordLengthFinal);
-
-  // console.log(passwordFinal) // 18
-
-  // console.log(Number(passwordLength)) // 10
-
-  // console.log(passwordFinal)
- 
- 
-//   for (var i=0; i < (Number(passwordLength) - passwordValuePrompt.length); i++) {
-//     passwordValuePrompt.push(passwordValueConcat[Math.floor(Math.random() * passwordValueConcat.length)]) 
-//     console.log(passwordValuePrompt[i])
-// }
- 
- 
-  //console.log(parseInt(passwordLength))
-
-//console.log(passwordValue.length)
-
-//console.log(typeof (parseInt(passwordLength) - passwordValue.length))
-
-// var allCharacters = [].concat(lowercaseCharacters, uppercaseCharacters, numericRange, specialCharacters);
-
-// console.log(allCharacters)
-
-  // for (var i=0; i < (Number(passwordLength) - passwordValuePrompt.length); i++) {
-  //   if (lowercaseCharactersUse === true) {
-  //     passwordValueRest.push(lowercaseCharacters[Math.floor(Math.random() * lowercaseCharacters.length)]) 
-  //     console.log(passwordValueRest[i])
-  //   }
-  // }
-
-  // for (var i=0; i < (Number(passwordLength) - passwordValuePrompt.length); i++) {
-  //   if (uppercaseCharactersUse === true) {
-  //     passwordValueRest.push(uppercaseCharacters[Math.floor(Math.random() * uppercaseCharacters.length)]) 
-  //     console.log(i)
-  //   }
-  // }
-
-  // for (var i=0; i < (Number(passwordLength) - passwordValue.length); i++) {
-  //   if (numericRangeUse === true) {
-  //     passwordValue.push(numericRange[Math.floor(Math.random() * numericRange.length)]) 
-  //     console.log(i)
-  //   }
-  // }
-
-  // for (var i=0; i < (Number(passwordLength) - passwordValue.length); i++) {
-  //   if (specialCharactersUse === true) {
-  //     passwordValue.push(specialCharacters[Math.floor(Math.random() * specialCharacters.length)]) 
-  //     console.log(i)
-  //   }
-  // }
- 
+  console.log(passwordValue)
 
 
-// change passwordValue from array to string before using return (using info from w3schools JavaScript Array toString() )
+// logs in password value on a web page and removes comas between characters
 
-  return passwordValuePrompt;
+  return passwordValue.join("");
 }
 
 
